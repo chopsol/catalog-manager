@@ -285,6 +285,10 @@ class DcCallbacks extends \Backend {
 
         if ( empty( $arrCatalog ) || !is_array( $arrCatalog ) ) return null;
 
+        if ($dc->activeRecord->{$arrCatalog['lngField']} && $dc->activeRecord->{$arrCatalog['latField']}) {
+			return;
+		}
+
         $arrCords = [];
         $objGeoCoding = new GeoCoding();
         $strGeoInputType = $arrCatalog['addressInputType'];
