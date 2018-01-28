@@ -77,6 +77,11 @@ class GeoCoding extends CatalogController {
 
             $arrGeometry = $arrResponse['results'][0]['geometry'];
 
+            if ($arrGeometry['location'] && preg_match("/,/",$arrGeometry['location']['lat'])) {
+               $arrGeometry['location']['lat'] = preg_replace("/,/",".",$arrGeometry['location']['lat']);
+               $arrGeometry['location']['lng'] = preg_replace("/,/",".",$arrGeometry['location']['lng']);
+    	    }
+
             $arrReturn['lat'] = $arrGeometry['location'] ? $arrGeometry['location']['lat'] : '';
             $arrReturn['lng'] = $arrGeometry['location'] ? $arrGeometry['location']['lng'] : '';
 
