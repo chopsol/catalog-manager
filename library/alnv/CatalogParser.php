@@ -49,7 +49,9 @@ class CatalogParser extends CatalogController {
 
             foreach ( $arrArchive as $arrEventIndex => $arrEvent ) {
 
-                $arrReturn[ $intArchive ][ $arrEventIndex ][] = $this->parseCatalogValues( $arrEvent[0] );
+				foreach ($arrEvent as $arrEventItem) {
+	                $arrReturn[ $intArchive ][ $arrEventIndex ][] = $this->parseCatalogValues( $arrEventItem );
+				}
             }
         }
 
